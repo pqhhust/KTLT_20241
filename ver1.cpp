@@ -36,7 +36,7 @@ void mergeSort(char **str, int l, int r) {
             tmp[k] = str[i];
             i++;
             k++;
-        } else if (strcmp(str[i], str[j]) == -1) {
+        } else if (strcmp(str[i], str[j]) < 0) {
             tmp[k] = str[i];
             i++;
             k++;

@@ -7,13 +7,103 @@ using namespace std;
 int maxStudents = 50;
 
 int cntStudents = 0;
-char **students;
+char** students;
 
 void init() {
     students = new char* [maxStudents];
     for (int i = 0; i < maxStudents; i++) {
         students[i] = nullptr;
     }
+}
+
+struct Node {
+    char* data;
+    Node* next;
+};
+
+struct Stack {
+    Node * top;
+};
+
+void initStack(Stack* stack) {
+    stack->top = nullptr;
+};
+
+void push(Stack* stack, char* str) {
+    Node* newNode = new Node;
+    newNode->data = str;
+    newNode->next = stack->top;
+    stack->top = newNode;
+}
+
+char* pop(Stack* stack) {
+    if (stack->top == nullptr) return nullptr;
+    Node* tmp = stack->top;
+    char* data = tmp->data;
+    stack->top = stack->top->next;
+    delete tmp;
+    return data;
+}
+
+bool isEmpty(Stack* stack) {
+    return stack->top == nullptr;
+}
+
+void splitName(char* name, Stack* stack) {
+    char* token = strtok(name, " ");
+    while (token != nullptr) {
+        push(stack, token);
+        token = strtok(nullptr, " ");
+    }
+}
+
+int namesCmp(char* name1, char* name2) {
+    Stack st1, st2;
+    initStack(&st1);
+    initStack(&st2);
+
+    char* name1Copy = new char[strlen(name1) + 1];
+    char* name2Copy = new char[strlen(name2) + 1];
+    strcpy(name1Copy, name1);
+    strcpy(name2Copy, name2);
+
+    splitName(name1Copy, &st1);
+    splitName(name2Copy, &st2);
+
+    char* lastName1 = pop(&st1);
+    char* lastName2 = pop(&st2);
+
+    int cmp = strcmp(lastName1, lastName2);
+    if (cmp != 0) {
+        delete[] name1Copy;
+        delete[] name2Copy;
+        return cmp;
+    }
+    while (!isEmpty(&st1) && !isEmpty(&st2)) {
+        char* part1 = pop(&st1);
+        char* part2 = pop(&st2);
+        cmp = strcmp(part1, part2);
+        if (cmp != 0) {
+            delete[] name1Copy;
+            delete[] name2Copy;
+            return cmp;
+        }
+    }
+
+    if (!isEmpty(&st1)) {
+        delete[] name1Copy;
+        delete[] name2Copy;
+        return 1;
+    }
+    if (!isEmpty(&st2)) {
+        delete[] name1Copy;
+        delete[] name2Copy;
+        return -1;
+    }
+
+    delete[] name1Copy;
+    delete[] name2Copy;
+    return 0;
 }
 
 void mergeSort(char **str, int l, int r) {
@@ -34,7 +124,7 @@ void mergeSort(char **str, int l, int r) {
             tmp[k] = str[i];
             i++;
             k++;
-        } else if (strcmp(str[i], str[j]) < 0) {
+        } else if (namesCmp(str[i], str[j]) < 0) {
             tmp[k] = str[i];
             i++;
             k++;
