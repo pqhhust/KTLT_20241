@@ -59,12 +59,10 @@ void addStudents() {
             cout << "Da du sinh vien\n";
             break;
         }
-        char *tmp = new char[MAX_NAME_LENGTH + 1];
-        cin.getline(tmp, MAX_NAME_LENGTH + 1);
-        if (*tmp == '\0') {
+        cin.getline(students[cntStudents], MAX_NAME_LENGTH + 1);
+        if (*students[cntStudents] == '\0') {
             break;
         }
-        students[cntStudents] = tmp;
         cntStudents++;
     }
 }
