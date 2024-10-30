@@ -1,20 +1,11 @@
 #include <stdio.h>
-int main()
-{
-    int x, y, z;
-    int *ptr;
-    scanf("%d %d %d", &x, &y, &z);
-    printf("Here are the values of x, y, and z:\n");
-    printf("%d %d %d\n", x, y, z);
-
-    ptr = &x;
-    (*ptr) += 100;
-    ptr++;
-    (*ptr) += 100;
-    ptr++;
-    (*ptr) += 100;
+int main(){
+    int a[7]= {13, -355, 235, 47, 67, 943, 1222}; 
+    printf("address of first five elements in memory.\n");
+    for (int i=0; i<5;i++)  printf("\ta[%d] ",i);
+    printf("\n");
     
-    printf("Once again, here are the values of x, y, and z:\n");
-    printf("%d %d %d\n", x, y, z);
+    for (int i = 0; i < 5; i++) printf("%p\t", &a[i]);
+           
     return 0;
 }
