@@ -9,9 +9,9 @@ int main()
 
     ptr = &x;
     (*ptr) += 100;
-    ptr = &y;
+    ptr++;
     (*ptr) += 100;
-    ptr = &z;
+    ptr++;
     (*ptr) += 100;
     
     printf("Once again, here are the values of x, y, and z:\n");
