@@ -16,6 +16,7 @@ void input(int **mt, int m, int n){
     
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
+            printf("mt[%d][%d] = ", i, j);
             scanf("%d", *(mt + i) + j);
         }
     }
@@ -43,7 +44,6 @@ int process(int **mt, int m, int n){
                 tong += *(*(mt + i) + j);       
             }
         }
-        printf("\n");
     }
     return tong;
 }
