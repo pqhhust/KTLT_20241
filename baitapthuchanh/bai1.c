@@ -7,9 +7,9 @@ int main(){
     printf("\nThe three integers are:\n");
     ptr = &x;
     printf("x = %d\n", *ptr);
-    ptr = &y;
+    ptr++;
     printf("y = %d\n", *ptr);
-    ptr = &z;
+    ptr++;
     printf("z = %d\n", *ptr);
     
     return 0;
