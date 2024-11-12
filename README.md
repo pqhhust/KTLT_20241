@@ -13,5 +13,7 @@
 - Nâng cấp chức năng 2: Sắp xếp sinh viên theo kiểu Việt Nam.
 
 `ver4.cpp`
+- Lưu trữ thông tin của sinh viên bằng cấu trúc danh sách liên kết.
+- Cho phép thêm, sửa, xóa thông tin của sinh viên.
 
 `ver5.cpp`
